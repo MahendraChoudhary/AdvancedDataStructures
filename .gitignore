@@ -3,3 +3,6 @@
 ################################################################################
 
 /DataStructure/obj
+/DataStructureTests/obj
+/StackQueue/obj
+/StringOperation/obj
