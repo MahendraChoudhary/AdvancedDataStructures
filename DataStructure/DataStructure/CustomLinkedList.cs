@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataStructure
 {
-    public class CustomLinkedList<T>
+    public class CustomLinkedList<T> : ICustomLinkedList<T>
     {
         private Node<T> head;
 
