@@ -28,5 +28,25 @@ namespace DataStructure.Tests
 
             bst.Inorder(bst.Root);
         }
+
+        [TestMethod]
+        public void BFSTest()
+        {
+            var bst = new BinarySearchTree<int>();
+            bst.Insert(15);
+            bst.Insert(14);
+            bst.Insert(13);
+            bst.Insert(12);
+            bst.Insert(11); 
+            bst.Insert(10);
+            bst.Insert(16);
+            bst.Insert(17);
+            bst.Insert(18);
+            bst.Insert(19);
+            bst.Insert(20);
+            Assert.IsTrue(bst.BFS(13));
+            Assert.IsTrue(bst.BFS(20));
+            Assert.IsFalse(bst.BFS(21));
+        }
     }
 }

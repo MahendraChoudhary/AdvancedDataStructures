@@ -19,33 +19,62 @@ namespace DataStructure
         public void Insert(T value)
         {
             var node = new TreeNode<T>(value);
-            
+            if (Root == null)
+            {
+                Root = node;
+                return;
+            }
             var current = Root;
             var parent = current;
-            int compare = 0;
             while (current != null)
             {
                 parent = current;
-                compare = current.Value.CompareTo(value);
-                current = compare < 0 ? current.Right : current.Left;
-            }
-
-            if (parent != null)
-            {
-                if (compare < 0)
+                if (value.CompareTo(current.Value) < 0)
                 {
-                    parent.Right = node;
+                    current = current.Left;
+                    if (current == null)
+                    {
+                        parent.Left = node;
+                        return;
+                    }
                 }
                 else
                 {
-                    parent.Left = node;
+                    current = current.Right;
+                    if (current == null)
+                    {
+                        parent.Right = node;
+                        return;
+                    }
                 }
             }
-            else
-            {
-                Root = node;
-            }
 
+        }
+
+        public bool BFS(T value)
+        {
+            Queue<TreeNode<T>> nodes = new Queue<TreeNode<T>>();
+            nodes.Enqueue(Root);
+            while (nodes.Count != 0)
+            {
+                var presentNode = nodes.Dequeue();
+                int compare = presentNode.Value.CompareTo(value);
+                if (compare == 0)
+                {
+                    return true;
+                }
+
+                if (presentNode.Left != null)
+                {
+                    nodes.Enqueue(presentNode.Left);
+                }
+                if (presentNode.Right != null)
+                {
+                    nodes.Enqueue(presentNode.Right);
+                }
+
+            }
+            return false;
         }
 
         public void Inorder(TreeNode<T> root)
